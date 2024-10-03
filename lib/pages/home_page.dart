@@ -144,9 +144,14 @@ class _HomePageState extends State<HomePage> {
                           document.data() as Map<String, dynamic>;
                       String noteText = data['note'];
 
+                      String subtitle = data['subtitle'] ?? '';
+
                       if (noteText
-                          .toLowerCase()
-                          .contains(searchController.text.toLowerCase())) {
+                              .toLowerCase()
+                              .contains(searchController.text.toLowerCase()) ||
+                          subtitle
+                              .toLowerCase()
+                              .contains(searchController.text.toLowerCase())) {
                         dynamic createdAt = data['createdAt'];
                         DateTime? createdAtDateTime;
                         if (createdAt is Timestamp) {
@@ -181,12 +186,14 @@ class _HomePageState extends State<HomePage> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(noteText),
+                                              // const SizedBox(
+                                              //   height: 12,
+                                              // ),
+                                              // Text(subtitle)
                                             ],
                                           ),
                                         ),
-                                        const SizedBox(
-                                            width:
-                                                10), // Spasi antara judul dan waktu
+                                        const SizedBox(width: 10),
                                         Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.end,
